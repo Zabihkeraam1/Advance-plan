@@ -189,7 +189,7 @@ resource "aws_apprunner_service" "backend_service" {
         #   build_command = "npm --prefix ./backend install --production"
          # build_command = "pip install -r backend/requirements.txt"
          # build_command = "pip install -r backend/requirements.txt"
-          build_command = "pip install -r backend/requirements.txt"
+          build_command = "pip install -r ./backend/requirements.txt"
         #   start_command = "node ./backend/server.js" 
           start_command = "uvicorn backend.main:app --host 0.0.0.0 --port 8080" 
           port           = 8080
