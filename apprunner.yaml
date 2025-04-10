@@ -3,5 +3,5 @@ run:
   runtime: PYTHON_311
   build:
     commands:
-      - pip install -r backend/requirements.txt  # Explicit path
+      - pip install -r ./backend/requirements.txt  # Explicit path
   command: uvicorn backend.main:app --host 0.0.0.0 --port 8080  # Module path
