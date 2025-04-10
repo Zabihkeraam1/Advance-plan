@@ -46,3 +46,8 @@ variable "db_username" {
   description = "Username for the database"
   type        = string
 }
+
+variable "db_name" {
+  description = "Database name"
+  type        = string
+}
