@@ -53,7 +53,7 @@ async def root():
     return {
         "message": "🚀 Deployment Successful again and again!",
         "status": "running",
-        "timestamp": (await asyncio.get_event_loop().time()),  # You can use a different timestamp method if needed
+        "timestamp": asyncio.get_event_loop().time(),  # Use directly without await
         "origin": os.getenv("FRONTEND_DOMAIN")
     }
 
