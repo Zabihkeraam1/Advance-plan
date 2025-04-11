@@ -1,7 +1,17 @@
+# version: 1.0
+# run:
+#   runtime: PYTHON_311
+#   build:
+#     commands:
+#       - pip install -r ./backend/requirements.txt  # Explicit path
+#   command: uvicorn backend.main:app --host 0.0.0.0 --port 8080  # Module path
+
 version: 1.0
+runtime: python3_11
+build:
+  commands:
+    build:
+      - pip install -r ./backend/requirements.txt
 run:
-  runtime: PYTHON_311
-  build:
-    commands:
-      - pip install -r ./backend/requirements.txt  # Explicit path
-  command: uvicorn backend.main:app --host 0.0.0.0 --port 8080  # Module path
+  command: uvicorn backend.main:app --host 0.0.0.0 --port 8080
+
