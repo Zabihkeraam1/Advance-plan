@@ -186,16 +186,16 @@ resource "aws_apprunner_service" "backend_service" {
         code_configuration_values {
           runtime        = "PYTHON_311"
           # build_command = "python3 -m pip install -r ./backend/requirements.txt"
-          build_command = """
+          build_command = <<EOF
             python3 -m venv ./venv && \
-            . ./venv/bin/activate && \
+            source ./venv/bin/activate && \
             pip install -r ./backend/requirements.txt
-          """
+          EOF
           # start_command = "python3 -m uvicorn backend.main:app --host 0.0.0.0 --port 8080"
-          start_command = """
+          start_command = <<EOF
             source ./venv/bin/activate && \
             python3 -m uvicorn backend.main:app --host 0.0.0.0 --port $PORT
-          """
+          EOF
 
           port           = 8080
           runtime_environment_variables = {
