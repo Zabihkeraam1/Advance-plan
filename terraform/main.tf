@@ -190,7 +190,7 @@ resource "aws_apprunner_service" "backend_service" {
           # start_command = "python3 -m uvicorn backend.main:app --host 0.0.0.0 --port 8080"
           # start_command = "bash -c 'source ./venv/bin/activate && python3 -m uvicorn backend.main:app --host 0.0.0.0 --port 8080'"
           # start_command = "bash -c source ./venv/bin/activate && python3 -m uvicorn backend.main:app --host 0.0.0.0 --port 8080"
-          start_command  = "bash -c '. ./venv/bin/activate && exec python -m uvicorn backend.main:app --host 0.0.0.0 --port 8080'"
+          start_command  = "./venv/bin/activate && exec python -m uvicorn backend.main:app --host 0.0.0.0 --port 8080"
           port           = 8080
           runtime_environment_variables = {
             NODE_ENV        = "production"
