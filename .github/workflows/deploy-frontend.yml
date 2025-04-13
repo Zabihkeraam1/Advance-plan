@@ -51,7 +51,7 @@ jobs:
           npm install --legacy-peer-deps
           # Then run the build
           NEXT_PUBLIC_API_URL=$APPRUNNER_URL npm run build
-          npm run export
+          npx next export
           # Copy the .env file to the output directory
           cp .env ./out/.env
 
