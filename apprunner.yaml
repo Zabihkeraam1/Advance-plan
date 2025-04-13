@@ -2,6 +2,9 @@ version: 1.0
 runtime: python311
 
 build:
+  env:
+    - name: APPRUNNER_URL
+      value: "dummy_value"
   commands:
     pre-build:
       - echo "=== Starting build process ==="
