@@ -27,4 +27,4 @@ run:
     port: 8080
   env:
     - name: FRONTEND_DOMAIN
-      value: "arn:aws:ssm:us-east-1:135808921133:parameter/app/cloudfront_url"
+      value-from: "arn:aws:ssm:us-east-1:135808921133:parameter/app/cloudfront_url"
