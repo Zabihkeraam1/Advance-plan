@@ -9,7 +9,7 @@ const Home = () => {
     console.log('Button clicked: ', process.env.NEXT_PUBLIC_API_URL)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`)
+      const res = await fetch(`https://${process.env.NEXT_PUBLIC_API_URL}/api`)
       const data = await res.json() 
       setResponse(data.message)
       console.log("data: ", data)
@@ -22,7 +22,7 @@ const Home = () => {
     console.log('Button clicked: ', process.env.NEXT_PUBLIC_API_URL)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/data`)
+      const res = await fetch(`https://${process.env.NEXT_PUBLIC_API_URL}/data`)
       const data = await res.json() 
       setResponse(data.message)
       console.log("data: ", data)
