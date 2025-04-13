@@ -31,4 +31,4 @@ run:
     port: 8080
   env:
     - name: FRONTEND_DOMAIN
-      value: ${APPRUNNER_URL}
+      value: "${APPRUNNER_URL}"
