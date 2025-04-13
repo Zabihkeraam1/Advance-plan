@@ -182,27 +182,7 @@ resource "aws_apprunner_service" "backend_service" {
       }
 
       code_configuration {
-        configuration_source = "API"
-        code_configuration_values {
-          runtime        = "PYTHON_311"
-          # build_command = "python3 -m venv ./venv && source ./venv/bin/activate && pip install -r ./backend/requirements.txt"
-          build_command = "python3 -m pip install --upgrade pip && python3 -m pip install --target=/usr/local/lib/python3.11/site-packages -r ./backend/requirements.txt"
-          # start_command = "python3 -m uvicorn backend.main:app --host 0.0.0.0 --port 8080"
-          start_command  = "python3 -m uvicorn backend.main:app --host 0.0.0.0 --port 8080"
-          port           = 8080
-          runtime_environment_variables = {
-            PYTHONPATH = "/app/.python_packages"
-            NODE_ENV        = "production"
-            FRONTEND_DOMAIN  = aws_cloudfront_distribution.cdn.domain_name
-            S3_BUCKET_NAME  = aws_s3_bucket.frontend_bucket.bucket
-            DB_USER           = aws_db_instance.my_database.username
-            DB_PASSWORD       = var.db_password
-            DB_HOST           = aws_db_instance.my_database.address
-            DB_NAME           = aws_db_instance.my_database.db_name
-            DB_PORT           = "5432"
-            DB_SSL            = "true" # Always use SSL with public RDS
-          }
-        }
+        configuration_source = "REPOSITORY"
       }
     }
   }
@@ -211,9 +191,20 @@ resource "aws_apprunner_service" "backend_service" {
     cpu               = "1024"
     memory            = "2048"
   }
-
+  runtime_environment_variables = {
+    PYTHONPATH = "/app/.python_packages"
+    NODE_ENV        = "production"
+    FRONTEND_DOMAIN  = aws_cloudfront_distribution.cdn.domain_name
+    S3_BUCKET_NAME  = aws_s3_bucket.frontend_bucket.bucket
+    DB_USER           = aws_db_instance.my_database.username
+    DB_PASSWORD       = var.db_password
+    DB_HOST           = aws_db_instance.my_database.address
+    DB_NAME           = aws_db_instance.my_database.db_name
+    DB_PORT           = "5432"
+    DB_SSL            = "true" # Always use SSL with public RDS
+  }
     tags = {
-    Name        = "${var.project}--backend"
+    Name        = "${var.project}-backend-${random_id.bucket_suffix.hex}"
     Project     = var.project
     Environment = "production"
   }
