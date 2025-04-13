@@ -134,7 +134,7 @@ resource "aws_cloudfront_distribution" "cdn" {
   ]
 }
 
-# _____________________Creating RDS-database___________________
+# _____________________Creating RDS-database____________________
 # Get the default security group for your VPC
 data "aws_security_group" "default" {
   name   = "default"
