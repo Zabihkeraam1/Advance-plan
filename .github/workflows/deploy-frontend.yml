@@ -47,9 +47,11 @@ jobs:
       - name: Install and Build
         run: |
           cd frontend
-          npm ci
-          NEXT_PUBLIC_API_URL=$APPRUNNER_URL next build
-          next export
+          # First install to generate package-lock.json if missing
+          npm install
+          # Then run the build
+          NEXT_PUBLIC_API_URL=$APPRUNNER_URL npm run build
+          npm run export
           # Copy the .env file to the output directory
           cp .env ./out/.env
 
