@@ -11,7 +11,7 @@ const Home = () => {
     try {
       const res = await fetch(`https://${process.env.NEXT_PUBLIC_API_URL}/api`)
       const data = await res.json() 
-      setResponse(data.message)
+      setResponse(data.Date)
       console.log("data: ", data)
     } catch (error) {
       console.error(error)
