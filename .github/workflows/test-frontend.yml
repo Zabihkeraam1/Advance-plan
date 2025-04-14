@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
     paths:
       - "frontend/**"
-      - ".github/workflows/test-and-build.yml"
+      - ".github/workflows/test-frontend.yml"
 
   workflow_run:
     workflows: ["Deploy Infrastructure"]
