@@ -32,7 +32,7 @@ app = FastAPI()
 
 # CORS setup
 origins = [
-    "https://{os.getenv("FRONTEND_DOMAIN")}"
+    f"https://{os.getenv('FRONTEND_DOMAIN')}"
 ]
 
 app.add_middleware(
@@ -58,11 +58,11 @@ async def root():
         "status": "running",
         "timestamp": asyncio.get_event_loop().time(),  # Use directly without await
         "origin": os.getenv("FRONTEND_DOMAIN"),
-         "db_user"=os.getenv("DB_USER"),
-         "db_password"=os.getenv("DB_PASSWORD"),
-         "db_name"=os.getenv("DB_NAME"),
-         "db_host"=os.getenv("DB_HOST"),
-         "db_port"=int(os.getenv("DB_PORT")),
+        "db_user":os.getenv("DB_USER"),
+        "db_password":os.getenv("DB_PASSWORD"),
+        "db_name":os.getenv("DB_NAME"),
+        "db_host":os.getenv("DB_HOST"),
+        "db_port":int(os.getenv("DB_PORT")),
     }
 
 @app.get("/data")
