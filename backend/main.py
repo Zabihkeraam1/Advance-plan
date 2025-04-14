@@ -4,21 +4,24 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import asyncpg
 import asyncio
-
+import ssl
 # Load environment variables
 load_dotenv()
 
 # Connect to the database
 async def connect_db():
     try:
+        ssl_context = ssl.create_default_context()
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
         conn = await asyncpg.connect(
             user=os.getenv("DB_USER"),
             password=os.getenv("DB_PASSWORD"),
             database=os.getenv("DB_NAME"),
             host=os.getenv("DB_HOST"),
-            port=os.getenv("DB_PORT"),
-            ssl=False  # Set to True in production if needed
-        )
+            port=int(os.getenv("DB_PORT")),
+            ssl=ssl_context
+        )           
         return conn
     except Exception as e:
         print(f"Error connecting to the database: {e}")
