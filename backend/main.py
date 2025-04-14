@@ -32,7 +32,7 @@ app = FastAPI()
 
 # CORS setup
 origins = [
-    os.getenv("FRONTEND_DOMAIN")
+    "https://{os.getenv("FRONTEND_DOMAIN")}"
 ]
 
 app.add_middleware(
