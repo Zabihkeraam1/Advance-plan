@@ -57,7 +57,12 @@ async def root():
         "message": "🚀 Deployment Successful again and again!",
         "status": "running",
         "timestamp": asyncio.get_event_loop().time(),  # Use directly without await
-        "origin": os.getenv("FRONTEND_DOMAIN")
+        "origin": os.getenv("FRONTEND_DOMAIN"),
+         "db_user"=os.getenv("DB_USER"),
+         "db_password"=os.getenv("DB_PASSWORD"),
+         "db_name"=os.getenv("DB_NAME"),
+         "db_host"=os.getenv("DB_HOST"),
+         "db_port"=int(os.getenv("DB_PORT")),
     }
 
 @app.get("/data")
