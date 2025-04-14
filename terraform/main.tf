@@ -182,9 +182,12 @@ resource "aws_apprunner_service" "backend_service" {
       }
 
       code_configuration {
-        configuration_source = "REPOSITORY"
+        configuration_source = "API"
             code_configuration_values {
-          runtime = "PYTHON_311"
+          runtime        = "PYTHON_311"
+          build_command = "chmod +x terraform/build.sh && chmod +x terraform/start.sh && ./terraform/build.sh"
+          start_command = "./terraform/start.sh"
+          port           = 8080
           runtime_environment_variables = {
             NODE_ENV        = "production"
             FRONTEND_DOMAIN  = aws_cloudfront_distribution.cdn.domain_name
